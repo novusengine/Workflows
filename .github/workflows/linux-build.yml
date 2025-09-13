@@ -51,7 +51,7 @@ jobs:
     - name: Run Premake
       run: |
         export VULKAN_SDK=/usr/include/vulkan
-        premake5 gmake2
+        premake5 gmake
 
     - name: Build Meta Generator files
       run: |
@@ -76,7 +76,7 @@ jobs:
     - name: Re-run Premake
       run: |
         export VULKAN_SDK=/usr/include/vulkan
-        premake5 gmake2
+        premake5 gmake
 
     - name: Build
       run: |
