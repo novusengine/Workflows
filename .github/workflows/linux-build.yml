@@ -20,11 +20,10 @@ jobs:
       matrix:
         build-type: ${{ fromJson(inputs.build-types) }}
 
-
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: false
+        submodules: recurse
         repository: novusengine/${{ inputs.project }}
 
 #   - name: Setup premake
@@ -43,10 +42,6 @@ jobs:
 #       sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list http://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
 #       sudo apt update
 #       sudo apt install vulkan-sdk
-
-    - name: Checkout submodules
-      run: |
-        git submodule update --init --recursive
 
     - name: Run Premake
       run: |
