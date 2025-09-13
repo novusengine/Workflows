@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build-type: ${{ fromJson('["' + join(fromJSON('["${{ inputs.build-types }}"]'), '","') + '"]') }}
+        build-type: ${{ fromJson('["' + join(FromJson('["${{ inputs.build-types }}"]'), '","') + '"]') }}
 
     steps:
     - uses: actions/checkout@v4
