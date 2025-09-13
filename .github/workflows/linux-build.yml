@@ -6,6 +6,10 @@ on:
       project:
         required: true
         type: string
+      build-types:
+        required: false
+        type: string
+        default: Debug
 
 jobs:
   linux-build:
@@ -14,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build-type: [Debug]
+        build-type: ${{ fromJson('["' + join(fromJSON('["${{ inputs.build-types }}"]'), '","') + '"]') }}
 
     steps:
     - uses: actions/checkout@v4
