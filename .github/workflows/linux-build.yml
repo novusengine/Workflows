@@ -52,11 +52,17 @@ jobs:
       run: |
         export VULKAN_SDK=/usr/include/vulkan
         premake5 gmake
-
+    
+    # This is actually disgusting, but Github actions is what it is I suppose
+    # Needed to set the correct build type in make steps
+    - name: Lowercase build type variable
+      run: |
+        echo "BUILD_TYPE=`echo ${{matrix.build-type}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
+    
     - name: Build Meta Generator files
       run: |
         cd Build
-        make -j$(nproc) -k config=${{ matrix.build-type | toLowerCase }} Gen-Meta
+        make -j$(nproc) -k config=${{ env.BUILD_TYPE }} Gen-Meta
 
     - name: Set paths
       run: |
@@ -81,4 +87,4 @@ jobs:
     - name: Build
       run: |
         cd Build
-        make -j$(nproc) -k config=${{ matrix.build-type | toLowerCase }}
+        make -j$(nproc) -k config=${{ env.BUILD_TYPE }}
