@@ -9,7 +9,7 @@ on:
       build-types:
         required: false
         type: string
-        default: Debug
+        default: '["Debug"]'
 
 jobs:
   linux-build:
@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build-type: ${{ fromJson('["' }}${{ join(fromJson('["' + inputs.build-types + '"]'), '","') }}${{ '"]') }}
+        build-type: ${{ fromJson(inputs.build-types) }}
 
 
     steps:
