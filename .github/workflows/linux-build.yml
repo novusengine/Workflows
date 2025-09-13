@@ -56,7 +56,7 @@ jobs:
     - name: Build Meta Generator files
       run: |
         cd Build
-        make -j$(nproc) -k Gen-Meta
+        make -j$(nproc) -k config=${{ matrix.build-type | toLowerCase }} Gen-Meta
 
     - name: Set paths
       run: |
@@ -81,4 +81,4 @@ jobs:
     - name: Build
       run: |
         cd Build
-        make -j$(nproc) -k
+        make -j$(nproc) -k config=${{ matrix.build-type | toLowerCase }}
